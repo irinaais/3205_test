@@ -1,0 +1,15 @@
+{
+  "short_name": "3205_test",
+  "name": "3205_test",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "24x24",
+      "type": "image/svg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
