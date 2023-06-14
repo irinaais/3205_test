@@ -1,8 +1,11 @@
 import './App.css';
+import SearchForm from '../SearchForm/SearchForm';
 
 function App() {
   return (
-    <h1>3205_test</h1>
+    <div className='page'>
+      <SearchForm />
+    </div>
   );
 }
 
