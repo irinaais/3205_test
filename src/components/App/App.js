@@ -1,4 +1,5 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import UserList from '../UserList/UserList';
 
@@ -26,9 +27,17 @@ const usersList = [{
 }];
 
 function App() {
-  function handleSearchUser(email, number) {
-    console.log(email, number);
+  const [email, setEmail] = useState('');
+  const [number, setNumber] = useState('');
+
+  function handleSearchUser(emailFromInput, numberFromInput) {
+    setEmail(emailFromInput);
+    setNumber(numberFromInput);
   }
+
+  useEffect(() => {
+    console.log(email, number);
+  }, [email, number]);
 
   return (
     <main className='page'>
