@@ -1,11 +1,13 @@
 import './App.css';
 import SearchForm from '../SearchForm/SearchForm';
+import UserList from '../UserList/UserList';
 
 function App() {
   return (
-    <div className='page'>
+    <main className='page'>
       <SearchForm />
-    </div>
+      <UserList />
+    </main>
   );
 }
 

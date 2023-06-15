@@ -9,6 +9,12 @@
   font-style: normal;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.page__section {
+  width: 50%;
+  max-width: 440px;
 }

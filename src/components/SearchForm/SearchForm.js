@@ -2,7 +2,7 @@ import './SearchForm.css';
 
 function SearchForm() {
   return (
-    <main className='search-form__container'>
+    <section className='search-form__container page__section' >
       <form className='search-form'>
         <input
           className='search-form__input'
@@ -19,7 +19,7 @@ function SearchForm() {
           />
         <button className="search-form__button" type="submit" aria-label="Найти пользователя"/>
       </form>
-    </main>
+    </section>
   );
 }
 
