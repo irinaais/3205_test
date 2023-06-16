@@ -20,6 +20,7 @@ function SearchForm(props) {
 
   return (
     <section className='search-form__container page__section' >
+      <h1 className='search-form__title'>Поиск пользователя</h1>
       <form className='search-form' onSubmit={ handleSubmit }>
         <input
           className='search-form__input'
