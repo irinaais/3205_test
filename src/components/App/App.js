@@ -29,20 +29,38 @@ const usersList = [{
 function App() {
   const [email, setEmail] = useState('');
   const [number, setNumber] = useState('');
+  const [usersFetched, setUsersFetched] = useState(false);
+  const [filteredUsersList, setFilteredUsersList] = useState([]);
+  const [searchFailed, setSearchFailed] = useState(false);
 
-  function handleSearchUser(emailFromInput, numberFromInput) {
+  function handleSearchUsers(emailFromInput, numberFromInput) {
     setEmail(emailFromInput);
     setNumber(numberFromInput);
+    setUsersFetched(true);
   }
 
   useEffect(() => {
-    console.log(email, number);
+    if (usersFetched) {
+      const filteredUsers = usersList.find((user) => user.email === email);
+
+      if (filteredUsers == null) {
+        setFilteredUsersList([]);
+      } else {
+        setFilteredUsersList(filteredUsers);
+      }
+      // TODO добавить поиск по number
+      // filteredUsers = filteredUsers.find((user) => user.number === number);
+      // setFilteredUsersList(filteredUsers);
+    }
   }, [email, number]);
 
   return (
     <main className='page'>
-      <SearchForm onSubmit={ handleSearchUser }/>
-      <UserList />
+       <SearchForm onSubmit={ handleSearchUsers } />
+       <UserList
+         filteredUsersList={ filteredUsersList }
+         usersFetched={ usersFetched }
+         searchFailed = { searchFailed } />
     </main>
   );
 }
