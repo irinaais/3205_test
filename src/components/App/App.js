@@ -41,14 +41,18 @@ function App() {
 
   useEffect(() => {
     if (usersFetched) {
+      // TODO изменить, чтобы находились все, а не только первый
       const filteredUsers = usersList.find((user) => user.email === email);
+      const arrFilteredUsers = [];
+      arrFilteredUsers.push(filteredUsers);
 
       if (filteredUsers == null) {
         setFilteredUsersList([]);
       } else {
-        setFilteredUsersList(filteredUsers);
+        setFilteredUsersList(arrFilteredUsers);
       }
       // TODO добавить поиск по number
+      // TODO добавить при ошибке setSearchFailed
       // filteredUsers = filteredUsers.find((user) => user.number === number);
       // setFilteredUsersList(filteredUsers);
     }
