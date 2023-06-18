@@ -1,5 +1,7 @@
 import './SearchForm.css';
 import { useState } from 'react';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { IMaskInput } from 'react-imask';
 
 function SearchForm(props) {
   const [email, setEmail] = useState('');
@@ -10,7 +12,7 @@ function SearchForm(props) {
   }
 
   function handleChangeNumber(evt) {
-    setNumber(evt.target.value);
+    setNumber(evt.target.value.replace(/[^0-9]/g, ''));
   }
 
   function handleSubmit(evt) {
@@ -30,13 +32,13 @@ function SearchForm(props) {
           name='email'
           onChange={ handleChangeEmail }
         />
-        <input
+        <IMaskInput
+          mask='00-00-00'
           className='search-form__input'
-          type='number'
           placeholder='Номер'
           name='number'
           onChange={ handleChangeNumber }
-          />
+        />
         <button className="search-form__button" type="submit" aria-label="Найти пользователя"/>
       </form>
     </section>
