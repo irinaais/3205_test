@@ -2,29 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import UserList from '../UserList/UserList';
-
-const usersList = [{
-  email: 'jim@gmail.com',
-  number: '221122',
-}, {
-  email: 'jam@gmail.com',
-  number: '830347',
-}, {
-  email: 'john@gmail.com',
-  number: '221122',
-}, {
-  email: 'jams@gmail.com',
-  number: '349425',
-}, {
-  email: 'jams@gmail.com',
-  number: '141424',
-}, {
-  email: 'jill@gmail.com',
-  number: '822287',
-}, {
-  email: 'jill@gmail.com',
-  number: '822286',
-}];
+import * as Api from '../../utils/Api';
 
 function App() {
   const [email, setEmail] = useState('');
@@ -41,20 +19,12 @@ function App() {
 
   useEffect(() => {
     if (usersFetched) {
-      // TODO изменить, чтобы находились все, а не только первый
-      const filteredUsers = usersList.find((user) => user.email === email);
-      const arrFilteredUsers = [];
-      arrFilteredUsers.push(filteredUsers);
-
-      if (filteredUsers == null) {
-        setFilteredUsersList([]);
-      } else {
-        setFilteredUsersList(arrFilteredUsers);
-      }
-      // TODO добавить поиск по number
-      // TODO добавить при ошибке setSearchFailed
-      // filteredUsers = filteredUsers.find((user) => user.number === number);
-      // setFilteredUsersList(filteredUsers);
+      Api.getUsers(email, number)
+        .then((res) => setFilteredUsersList(res))
+        .catch((err) => {
+          setSearchFailed(true);
+          console.log(`Ошибка: ${err.status}`);
+        });
     }
   }, [email, number]);
 
