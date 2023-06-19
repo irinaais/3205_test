@@ -8,14 +8,27 @@ function checkResponse(res) {
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
-export const getUsers = (email, number) => fetch(BASE_URL, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    email,
-    number,
-  }),
-})
-  .then(checkResponse)
-  .then((res) => res)
-  .catch((err) => console.log(err));
+let prevAbortController = null;
+
+export const getUsers = (email, number) => {
+  if (prevAbortController != null) {
+    prevAbortController.abort();
+    prevAbortController = null;
+  }
+
+  const abortController = new AbortController();
+  prevAbortController = abortController;
+
+  return fetch(BASE_URL, {
+    signal: abortController.signal,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      email,
+      number,
+    }),
+  })
+    .then(checkResponse)
+    .then((res) => res)
+    .catch((err) => console.log(err));
+};
