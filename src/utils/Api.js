@@ -1,10 +1,9 @@
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'http://localhost:3001';
 
 function checkResponse(res) {
   if (res.ok) {
     return res.json();
   }
-  // eslint-disable-next-line prefer-promise-reject-errors
   return Promise.reject(`Ошибка: ${res.status}`);
 }
 
